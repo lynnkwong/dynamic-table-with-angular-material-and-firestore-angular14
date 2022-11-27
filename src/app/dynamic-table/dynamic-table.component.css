@@ -1,0 +1,105 @@
+.table-container {
+  margin: auto;
+  max-width: 50vw;
+}
+
+.title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.input-field {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  color: #00f;
+}
+
+::ng-deep .mat-form-field-infix {
+  width: 100% !important;
+}
+
+.column-id {
+  width: 50px;
+  text-align: left;
+}
+
+.mat-cell,
+.mat-header-cell {
+  padding: 6px 6px 6px 0;
+}
+
+.column-name {
+  width: 350px;
+  text-align: left;
+}
+
+.column-brand {
+  width: 100px;
+  text-align: left;
+}
+
+.column-price {
+  width: 70px;
+  text-align: right;
+  justify-content: right;
+}
+
+td.column-price,
+.mat-form-field.column-price {
+  margin-right: 20px;
+}
+
+.column-quantity {
+  width: 70px;
+  text-align: right;
+}
+
+td.column-quantity,
+.mat-form-field.column-quantity {
+  margin-right: 20px;
+}
+
+.column-action {
+  text-align: right;
+}
+
+th .column-action {
+  margin-right: 20px;
+}
+
+.action-container {
+  margin-left: auto;
+  margin-right: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 50px;
+}
+
+.action-container button {
+  background-color: #fff;
+  margin-right: 10px;
+}
+
+.upsert-row {
+  color: #008000;
+}
+
+.cancel-row {
+  color: #808080;
+}
+
+.delete-row {
+  color: #ff0000;
+}
+
+.add-new-row {
+  width: 60px;
+  margin-top: 10px;
+  background-color: #4f1aed;
+}

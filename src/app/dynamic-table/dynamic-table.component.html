@@ -1,0 +1,95 @@
+<div class="table-container">
+  <h1 class="title">Dynamic table using Angular Material and Firestore</h1>
+  <mat-form-field class="input-field">
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Type to search..."
+      #input
+    />
+  </mat-form-field>
+
+  <table
+    mat-table
+    matSort
+    [dataSource]="dataSource"
+    class="mat-elevation-z8 product-table"
+  >
+    <ng-container
+      *ngFor="let column of columns"
+      [matColumnDef]="column.columnDef"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        <div class="column-{{ column.columnDef }}">
+          {{ column.header }}
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let row" class="column-{{ column.columnDef }}">
+        <ng-container *ngIf="activeRow?.id != row.id; else editRow">
+          <div class="column-{{ column.columnDef }}">
+            {{ column.cell(row) }}
+          </div>
+        </ng-container>
+        <ng-template #editRow>
+          <mat-form-field class="column-{{ column.columnDef }}">
+            <input
+              matInput
+              [type]="column.type"
+              [(ngModel)]="row[column.columnDef]"
+            />
+          </mat-form-field>
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="column-action">Action</div>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <div class="action-container">
+          <ng-container *ngIf="activeRow?.id == row.id">
+            <button
+              mat-mini-fab
+              class="upsert-row"
+              (click)="$event.stopPropagation(); upsertRow(row)"
+              [disabled]="!row.name"
+            >
+              <mat-icon>check</mat-icon>
+            </button>
+            <button
+              mat-mini-fab
+              class="cancel-row"
+              (click)="$event.stopPropagation(); cancelEditing()"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </ng-container>
+          <button
+            *ngIf="!row.isNew"
+            mat-mini-fab
+            color="warn"
+            class="delete-row"
+            (click)="$event.stopPropagation(); deleteRow(row)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="activeRow = row"
+    ></tr>
+  </table>
+  <div>
+    <button mat-stroked-button class="add-new-row" (click)="addNewRow()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 100]"></mat-paginator>
+</div>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "my-first-firebase-project-lynn": {
+      "hosting": {
+        "dynamic-table-with-firebase-test": [
+          "my-first-firebase-project-lynn"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "my-first-firebase-project-lynn"
+  }
+}
